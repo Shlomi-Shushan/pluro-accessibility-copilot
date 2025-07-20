@@ -1,0 +1,143 @@
+@* Razor (ASP.NET) Test Fixture – כל הבעיות *@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Razor Test – כל הבעיות</title>
+</head>
+<body>
+  @* 1. Keyboard Trap *@
+  <iframe src="page.html"></iframe>
+  <div tabindex="0" onkeydown="if(event.key=='Tab'){event.preventDefault();}">
+    Trap Tab (Razor)
+  </div>
+
+  @* 2. Modal Focus Management *@
+  <div role="dialog" aria-modal="true" id="razorModal1">
+    <p>No focusables (Razor)</p>
+  </div>
+  <div role="dialog" aria-modal="true" id="razorModal2">
+    <input type="text" />
+    <button>Close</button>
+  </div>
+  <div role="dialog" aria-modal="true" id="razorModal3">
+    <input type="text" />
+    <a href="#">LinkOnly</a>
+  </div>
+
+  @* 3. Negative tabindex *@
+  <button tabindex="-1">NegTab Razor</button>
+  <a href="#" tabindex="-1">LinkNeg Razor</a>
+
+  @* 4. Focusable but aria-hidden *@
+  <button aria-hidden="true">HiddenBtn Razor</button>
+
+  <hr />
+
+  @* 5. form_validation_aria_live *@
+  <form id="razorForm">
+    <label for="razorName">Name:</label>
+    <input type="text" id="razorName" />
+  </form>
+
+  @* 6. autocomplete_accessibility *@
+  <input type="text" id="razorAuto" autocomplete="bogus" />
+
+  @* 7. dynamic_form_fields *@
+  <input type="tel" id="razorDyn" data-dynamic-field="true" />
+
+  @* 8. form_error_announcements *@
+  <input type="email" id="razorEmail" aria-invalid="true" />
+  <div class="error-message">Invalid Email (Razor)</div>
+
+  <hr />
+
+  @* 9. tab_navigation_advanced *@
+  <div role="tablist">
+    <button role="tab" aria-selected="maybe" tabindex="2">OnlyOne</button>
+  </div>
+  <div role="tablist">
+    <button role="tab" aria-selected="true" tabindex="1">TabA</button>
+    <button role="tab" aria-selected="false" tabindex="0">TabB</button>
+  </div>
+
+  @* 10. dropdown_accessibility *@
+  <ul role="menu">
+    <li>Item1</li>
+    <li>Item2</li>
+  </ul>
+  <ul role="menubar">
+    <li>OptA</li>
+    <li>OptB</li>
+  </ul>
+
+  @* 11. carousel_aria_live *@
+  <div class="carouselRazor">
+    <div class="slide">S1</div>
+    <div class="slide">S2</div>
+  </div>
+
+  @* 12. expandable_content_management *@
+  <button aria-expanded="true">ToggleA</button>
+  <button aria-expanded="false" aria-controls="noRazor">ToggleB</button>
+  <div id="razorSection">No aria-hidden</div>
+
+  <hr />
+
+  @* 13. complex_table_structure *@
+  <table id="rTable1">
+    <tr>
+      <td>Val1</td>
+      <td>Val2</td>
+    </tr>
+  </table>
+  <table id="rTable2">
+    <thead>
+      <tr>
+        <th id="rh01">H1</th>
+        <th>H2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td headers="wrongID">V1</td>
+        <td>V2</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="rOuter2">
+    <tr>
+      <td>
+        <table id="rInner2">
+          <tr>
+            <th>IH</th>
+            <td>IV</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  @* 14. nested_list_hierarchy *@
+  <ul>
+    <ul>
+      <li>SubRazor</li>
+    </ul>
+  </ul>
+  <li>OrphanRazor</li>
+
+  @* 15. dynamic_content_updates *@
+  <div data-dynamic-content="true">DynamicRazor</div>
+  <div role="alert">AlertRazor</div>
+
+  @* 16. hover_content_accessibility *@
+  <button>HoverNoDataRazor</button>
+  <button data-hover-content="hrz">HoverInvalidRazor</button>
+  <div id="hrz">TooltipRazor</div>
+  <span data-hover-content="hrz2">HoverSpanRazor</span>
+  <div id="hrz2" aria-hidden="false">TooltipZRazor</div>
+</body>
+</html>

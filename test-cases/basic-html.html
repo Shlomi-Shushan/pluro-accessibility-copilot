@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Test Cases</title>
+</head>
+<body>
+    <h1>Accessibility Test Cases</h1>
+    
+    <!-- Missing alt text -->
+    <img src="image1.jpg">
+    
+    <!-- Good alt text -->
+    <img src="image2.jpg" alt="A beautiful sunset over the mountains">
+    
+    <!-- Empty alt (decorative) -->
+    <img src="decoration.jpg" alt="">
+    
+    <!-- Button without text -->
+    <button></button>
+    
+    <!-- Button with text -->
+    <button>Click me</button>
+    
+    <!-- Button with aria-label -->
+    <button aria-label="Close dialog"></button>
+    
+    <!-- Link without text -->
+    <a href="#"></a>
+    
+    <!-- Link with text -->
+    <a href="#">Learn more</a>
+    
+    <!-- Form without labels -->
+    <form>
+        <input type="text" placeholder="Enter name">
+        <input type="email" placeholder="Enter email">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Form with proper labels -->
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Missing heading hierarchy -->
+    <h1>Main Title</h1>
+    <h3>Skipped H2</h3>
+    
+    <!-- Color contrast issues -->
+    <p style="color: #ccc; background: white;">Low contrast text</p>
+    <p style="color: #000; background: white;">Good contrast text</p>
+    
+    <!-- Missing main landmark -->
+    <div>
+        <p>Content without main landmark</p>
+    </div>
+    
+    <!-- Proper landmarks -->
+    <main>
+        <article>
+            <h2>Article Title</h2>
+            <p>Article content</p>
+        </article>
+    </main>
+
+    <!-- Example of INCORRECT table structure (this will cause hydration error) -->
+    <!-- 
+    <table>
+        <tr>
+            <td>Bad structure</td>
+        </tr>
+    </table>
+    -->
+
+    <!-- Example of CORRECT table structure -->
+    <table>
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Data 1</td>
+                <td>Data 2</td>
+            </tr>
+            <tr>
+                <td>Data 3</td>
+                <td>Data 4</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Another correct table example with tfoot -->
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Widget A</td>
+                <td>$10</td>
+            </tr>
+            <tr>
+                <td>Widget B</td>
+                <td>$15</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>$25</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Widgets Test</title>
+</head>
+
+<body>
+    <!-- Test 1: Single Tab (should trigger violation) -->
+    <div role="tablist">
+        <button role="tab" aria-selected="true">Only One Tab</button>
+    </div>
+
+    <!-- Test 2: Invalid aria-selected (should trigger violation) -->
+    <div role="tablist">
+        <button role="tab" aria-selected="maybe">Invalid Tab</button>
+        <button role="tab" aria-selected="false">Valid Tab</button>
+    </div>
+
+    <!-- Test 3: Menu without menuitem roles (should trigger violation) -->
+    <ul role="menu">
+        <li>Item without role</li>
+        <li>Another item</li>
+    </ul>
+
+    <!-- Test 4: Carousel without aria-live (should trigger violation) -->
+    <div class="carousel">
+        <div class="slide">Slide 1</div>
+        <div class="slide">Slide 2</div>
+    </div>
+
+    <!-- Test 5: Expandable without aria-controls (should trigger violation) -->
+    <button aria-expanded="false">Toggle Without Controls</button>
+    <div class="expandable-content">
+        <p>Content without proper connection.</p>
+    </div>
+
+    <!-- Test 6: Modal without focusable elements (should trigger violation) -->
+    <div role="dialog" aria-modal="true">
+        <p>Modal without buttons or focusables.</p>
+    </div>
+
+    <!-- Test 7: Iframe without tabindex="-1" (should trigger violation) -->
+    <iframe src="page.html"></iframe>
+
+    <!-- Test 8: Tab key prevention (should trigger violation) -->
+    <div tabindex="0" onkeydown="if(event.key=='Tab'){event.preventDefault();}">
+        Trap Tab
+    </div>
+
+    <!-- Test 9: Nested list invalid structure (should trigger violation) -->
+    <ul>
+        <ul>
+            <li>SubItem</li>
+        </ul>
+    </ul>
+
+    <!-- Test 10: Orphaned list item (should trigger violation) -->
+    <li>Orphan Item</li>
+
+    <!-- Test 11: Dynamic content without aria-live (should trigger violation) -->
+    <div data-dynamic-content="true">
+        <p>Dynamic content</p>
+    </div>
+
+    <!-- Test 12: Hover content without aria-hidden (should trigger violation) -->
+    <button data-hover-content="tooltip1">Hover me</button>
+    <div id="tooltip1">Tooltip content</div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+{
+    "id": "custom-rule-template",
+    "name": "Custom Rule Template",
+    "description": "Template for creating custom accessibility rules",
+    "category": "Custom",
+    "severity": "error",
+    "wcagLevel": "AA",
+    "wcagCriteria": [
+        "1.4.3",
+        "2.1.1"
+    ],
+    "context": "Describe when this rule should be applied",
+    "status": "NEEDS_REVIEW",
+    "check": "function check(element) {\n  // Your custom accessibility check logic here\n  // Return true if the element passes the check\n  // Return false if the element fails the check\n  \n  // Example: Check if element has required ARIA attributes\n  const hasAriaLabel = element.getAttribute('aria-label');\n  const hasAriaLabelledby = element.getAttribute('aria-labelledby');\n  \n  return hasAriaLabel || hasAriaLabelledby;\n}",
+    "metadata": {
+        "author": "Your Name",
+        "version": "1.0.0",
+        "created": "2024-01-01",
+        "lastUpdated": "2024-01-01",
+        "tags": [
+            "custom",
+            "aria",
+            "accessibility"
+        ],
+        "examples": {
+            "passing": [
+                "<button aria-label=\"Close dialog\">×</button>",
+                "<div aria-labelledby=\"title-id\">Content</div>"
+            ],
+            "failing": [
+                "<button>×</button>",
+                "<div>Content without label</div>"
+            ]
+        },
+        "suggestions": [
+            "Add aria-label attribute",
+            "Add aria-labelledby attribute",
+            "Use semantic HTML elements"
+        ],
+        "resources": [
+            "https://www.w3.org/WAI/WCAG21/quickref/",
+            "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA"
+        ]
+    }
+}

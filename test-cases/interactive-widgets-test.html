@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Widgets Test - Phase 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .carousel {
+            border: 2px solid #007cba;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .slide {
+            display: none;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .slide.active {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .expandable-content {
+            display: none;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+        .tab[aria-selected="true"] {
+            background: #007cba;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Widgets Accessibility Test - Phase 3</h1>
+    <p>This page tests the new Interactive Widget Rules for accessibility compliance.</p>
+
+    <!-- Test 1: Tab Navigation (GOOD EXAMPLE) -->
+    <div class="test-section">
+        <h2>✅ Test 1: Proper Tab Navigation</h2>
+        <div role="tablist" aria-label="Content sections">
+            <button role="tab" aria-selected="true" aria-controls="panel1" tabindex="0" class="tab">Tab 1</button>
+            <button role="tab" aria-selected="false" aria-controls="panel2" tabindex="-1" class="tab">Tab 2</button>
+            <button role="tab" aria-selected="false" aria-controls="panel3" tabindex="-1" class="tab">Tab 3</button>
+        </div>
+        <div id="panel1" role="tabpanel" aria-labelledby="tab1" class="tab-content active">
+            <p>Content for Tab 1</p>
+        </div>
+        <div id="panel2" role="tabpanel" aria-labelledby="tab2" class="tab-content">
+            <p>Content for Tab 2</p>
+        </div>
+        <div id="panel3" role="tabpanel" aria-labelledby="tab3" class="tab-content">
+            <p>Content for Tab 3</p>
+        </div>
+    </div>
+
+    <!-- Test 2: Tab Navigation (BAD EXAMPLES) -->
+    <div class="test-section">
+        <h2>❌ Test 2: Problematic Tab Navigation</h2>
+        
+        <!-- Issue: Only one tab -->
+        <div role="tablist">
+            <button role="tab" aria-selected="true">Single Tab</button>
+        </div>
+
+        <!-- Issue: Missing aria-selected -->
+        <div role="tablist">
+            <button role="tab" tabindex="0">Tab A</button>
+            <button role="tab" tabindex="-1">Tab B</button>
+        </div>
+
+        <!-- Issue: Wrong tabindex values -->
+        <div role="tablist">
+            <button role="tab" aria-selected="true" tabindex="-1">Selected Tab</button>
+            <button role="tab" aria-selected="false" tabindex="0">Unselected Tab</button>
+        </div>
+    </div>
+
+    <!-- Test 3: Dropdown Accessibility (GOOD EXAMPLE) -->
+    <div class="test-section">
+        <h2>✅ Test 3: Proper Dropdown Menu</h2>
+        <button aria-haspopup="true" aria-expanded="false" id="menuButton">Menu</button>
+        <ul role="menu" aria-labelledby="menuButton" class="dropdown-menu">
+            <li role="menuitem" tabindex="-1">Item 1</li>
+            <li role="menuitem" tabindex="-1">Item 2</li>
+            <li role="menuitem" tabindex="-1">Item 3</li>
+        </ul>
+    </div>
+
+    <!-- Test 4: Dropdown Accessibility (BAD EXAMPLES) -->
+    <div class="test-section">
+        <h2>❌ Test 4: Problematic Dropdown Menus</h2>
+        
+        <!-- Issue: Missing trigger attributes -->
+        <button>Menu Without Attributes</button>
+        <ul role="menu">
+            <li role="menuitem">Item 1</li>
+        </ul>
+
+        <!-- Issue: Missing menuitem roles -->
+        <button aria-haspopup="true" aria-expanded="false">Menu</button>
+        <ul role="menu">
+            <li>Item without role</li>
+            <li>Another item</li>
+        </ul>
+
+        <!-- Issue: Missing tabindex on menuitems -->
+        <button aria-haspopup="true" aria-expanded="false">Menu</button>
+        <ul role="menu">
+            <li role="menuitem">Item without tabindex</li>
+            <li role="menuitem">Another item</li>
+        </ul>
+    </div>
+
+    <!-- Test 5: Carousel (GOOD EXAMPLE) -->
+    <div class="test-section">
+        <h2>✅ Test 5: Proper Carousel</h2>
+        <button aria-label="Previous slide" class="carousel-prev">←</button>
+        <div class="carousel" aria-live="polite" role="region" aria-roledescription="carousel">
+            <div class="slide active">Slide 1: Welcome to our carousel</div>
+            <div class="slide">Slide 2: Second slide content</div>
+            <div class="slide">Slide 3: Third slide content</div>
+        </div>
+        <button aria-label="Next slide" class="carousel-next">→</button>
+    </div>
+
+    <!-- Test 6: Carousel (BAD EXAMPLES) -->
+    <div class="test-section">
+        <h2>❌ Test 6: Problematic Carousels</h2>
+        
+        <!-- Issue: Missing aria-live -->
+        <div class="carousel">
+            <div class="slide active">Slide without announcements</div>
+        </div>
+
+        <!-- Issue: Missing navigation controls -->
+        <div class="carousel" aria-live="polite">
+            <div class="slide active">Slide without controls</div>
+        </div>
+
+        <!-- Issue: Controls without proper labels -->
+        <button class="carousel-prev">←</button>
+        <div class="carousel" aria-live="polite">
+            <div class="slide active">Slide with unlabeled controls</div>
+        </div>
+        <button class="carousel-next">→</button>
+    </div>
+
+    <!-- Test 7: Expandable Content (GOOD EXAMPLE) -->
+    <div class="test-section">
+        <h2>✅ Test 7: Proper Expandable Content</h2>
+        <button aria-expanded="false" aria-controls="section1">Toggle Section 1</button>
+        <div id="section1" aria-hidden="true" class="expandable-content">
+            <p>This content can be expanded and collapsed properly.</p>
+        </div>
+
+        <button aria-expanded="true" aria-controls="section2">Toggle Section 2</button>
+        <div id="section2" aria-hidden="false" class="expandable-content" style="display: block;">
+            <p>This content is currently expanded.</p>
+        </div>
+    </div>
+
+    <!-- Test 8: Expandable Content (BAD EXAMPLES) -->
+    <div class="test-section">
+        <h2>❌ Test 8: Problematic Expandable Content</h2>
+        
+        <!-- Issue: Missing aria-controls -->
+        <button aria-expanded="false">Toggle Without Controls</button>
+        <div class="expandable-content">
+            <p>Content without proper connection to trigger.</p>
+        </div>
+
+        <!-- Issue: Invalid aria-controls ID -->
+        <button aria-expanded="false" aria-controls="nonexistent">Toggle Invalid ID</button>
+        <div id="different-id" class="expandable-content">
+            <p>Content with mismatched ID.</p>
+        </div>
+
+        <!-- Issue: Missing aria-hidden -->
+        <button aria-expanded="false" aria-controls="section3">Toggle Section 3</button>
+        <div id="section3" class="expandable-content">
+            <p>Content without aria-hidden management.</p>
+        </div>
+    </div>
+
+    <!-- Test 9: Complex Interactive Widget -->
+    <div class="test-section">
+        <h2>🎯 Test 9: Complex Widget Combination</h2>
+        <div role="tablist">
+            <button role="tab" aria-selected="true" aria-controls="complex-panel1" tabindex="0">Settings</button>
+            <button role="tab" aria-selected="false" aria-controls="complex-panel2" tabindex="-1">Advanced</button>
+        </div>
+        
+        <div id="complex-panel1" role="tabpanel" class="tab-content active">
+            <button aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">Options</button>
+            <ul id="settings-menu" role="menu" class="dropdown-menu">
+                <li role="menuitem" tabindex="-1">General Settings</li>
+                <li role="menuitem" tabindex="-1">Privacy Settings</li>
+            </ul>
+            
+            <button aria-expanded="false" aria-controls="help-section">Help</button>
+            <div id="help-section" aria-hidden="true" class="expandable-content">
+                <p>Help content goes here.</p>
+            </div>
+        </div>
+        
+        <div id="complex-panel2" role="tabpanel" class="tab-content">
+            <div class="carousel" aria-live="polite">
+                <div class="slide active">Advanced Feature 1</div>
+                <div class="slide">Advanced Feature 2</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic JavaScript for demonstration (not accessibility-focused)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Interactive Widgets Test Page Loaded');
+            console.log('This page tests 4 new Interactive Widget Rules:');
+            console.log('1. tab_navigation_advanced');
+            console.log('2. dropdown_accessibility');
+            console.log('3. carousel_aria_live');
+            console.log('4. expandable_content_management');
+        });
+    </script>
+</body>
+</html>

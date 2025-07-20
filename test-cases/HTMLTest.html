@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Test – כל הבעיות</title>
+</head>
+<body>
+  <!-- 1. Keyboard Trap (שלב 1) -->
+  <!-- 1.1 iframe without tabindex="-1" -->
+  <h2>Keyboard Trap – iframe:</h2>
+  <iframe src="somepage.html"></iframe>
+
+  <!-- 1.2 Element with onkeydown that traps Tab -->
+  <h2>Keyboard Trap – onkeydown:</h2>
+  <div tabindex="0" onkeydown="if (event.key === 'Tab') { event.preventDefault(); }">
+    <p>Pressing Tab here is blocked.</p>
+  </div>
+
+  <!-- 2. Modal Focus Management (שלב 1) -->
+  <h2>Modal Focus Management:</h2>
+  <!-- 2.1 Modal with no focusable elements -->
+  <div role="dialog" aria-modal="true" id="modal1">
+    <p>Modal content but no buttons or focusables.</p>
+  </div>
+
+  <!-- 2.2 Modal with focusable children but no aria-selected/tabindex initial focus -->
+  <div role="dialog" aria-modal="true" id="modal2">
+    <input type="text" id="inputInModal" />
+    <!-- missing autofocus or tabindex on container -->
+    <button>Close</button>
+  </div>
+
+  <!-- 2.3 Modal with focusable children but missing close button -->
+  <div role="dialog" aria-modal="true" id="modal3">
+    <input type="text" />
+    <a href="#">Some Link</a>
+  </div>
+
+  <!-- 3. Negative TabIndex (שלב 1) -->
+  <h2>Negative TabIndex:</h2>
+  <button tabindex="-1">Should not have negative tabindex</button>
+  <a href="https://example.com" tabindex="-1">Link with tabindex -1</a>
+
+  <!-- 4. Focusable but aria-hidden (שלב 1) -->
+  <h2>Focusable but Hidden:</h2>
+  <button aria-hidden="true">Hidden Button but focusable</button>
+
+  <hr>
+
+  <!-- 5. form_validation_aria_live (שלב 2) -->
+  <h2>Form Validation without aria-live:</h2>
+  <form id="form1">
+    <label for="name1">Name:</label>
+    <input type="text" id="name1" />
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- 6. autocomplete_accessibility (שלב 2) -->
+  <h2>Autocomplete with invalid value + missing label:</h2>
+  <input type="text" id="auto1" autocomplete="invalidvalue" />
+  <!-- no <label> and no aria-label -->
+
+  <!-- 7. dynamic_form_fields (שלב 2) -->
+  <h2>Dynamic Form Field without accessible name + no aria-live wrap:</h2>
+  <div id="dynamicContainer">
+    <!-- imagine this input gets injected dynamically -->
+    <input type="tel" id="dynField" data-dynamic-field="true" />
+  </div>
+
+  <!-- 8. form_error_announcements (שלב 2) -->
+  <h2>Error Announcements:</h2>
+  <!-- 8.1 input aria-invalid="true" without alert/container -->
+  <input type="email" id="emailError" aria-invalid="true" />
+  <!-- 8.2 error-message div without role or aria-live -->
+  <div class="error-message">Please enter a valid email</div>
+
+  <hr>
+
+  <!-- 9. tab_navigation_advanced (שלב 3) -->
+  <h2>Tabs – role="tablist":</h2>
+  <div role="tablist">
+    <!-- Too few tabs -->
+    <button role="tab" aria-selected="maybe" tabindex="2">Only One Tab</button>
+  </div>
+
+  <div role="tablist">
+    <!-- Multiple tabs but wrong aria-selected/tabindex logic -->
+    <button role="tab" aria-selected="true" tabindex="1">Tab A</button>
+    <button role="tab" aria-selected="false" tabindex="0">Tab B</button>
+    <!-- aria-selected must be "true"/"false"; tabindex must be 0 for selected, -1 for unselected -->
+  </div>
+
+  <!-- 10. dropdown_accessibility (שלב 3) -->
+  <h2>Dropdown/Menu:</h2>
+  <ul role="menu">
+    <!-- no trigger element with aria-haspopup & aria-expanded -->
+    <li>MenuItem1</li>
+    <li>MenuItem2</li>
+  </ul>
+
+  <ul role="menubar" id="menubar1">
+    <!-- items missing role="menuitem" and missing tabindex -->
+    <li>Option A</li>
+    <li>Option B</li>
+  </ul>
+
+  <!-- 11. carousel_aria_live (שלב 3) -->
+  <h2>Carousel without aria-live & controls:</h2>
+  <div class="carousel">
+    <div class="slide">Slide 1</div>
+    <div class="slide">Slide 2</div>
+  </div>
+
+  <!-- 12. expandable_content_management (שלב 3) -->
+  <h2>Expandable Sections:</h2>
+  <!-- 12.1 trigger with aria-expanded but no aria-controls -->
+  <button aria-expanded="true">Toggle Section A</button>
+  <!-- 12.2 trigger references non-existent -->
+  <button aria-expanded="false" aria-controls="nonexistent">Toggle Section B</button>
+  <!-- 12.3 content without aria-hidden -->
+  <div id="sectionC">Visible/Hidden content but no aria-hidden</div>
+
+  <hr>
+
+  <!-- 13. complex_table_structure (שלב 4) -->
+  <h2>Complex Table:</h2>
+  <!-- 13.1 Missing <th> or <thead> -->
+  <table id="table1">
+    <tr>
+      <td>Cell 1</td>
+      <td>Cell 2</td>
+    </tr>
+  </table>
+
+  <!-- 13.2 <th> without scope/headers usage -->
+  <table id="table2">
+    <thead>
+      <tr>
+        <th id="h1">Header 1</th>
+        <th>Header 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td headers="hX">Val 1</td> <!-- no matching header id -->
+        <td>Val 2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 13.3 Nested table without caption -->
+  <table id="outerTable">
+    <tr>
+      <td>
+        <table id="innerTable">
+          <tr>
+            <th>Inner H1</th>
+            <td>Inner V1</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 14. nested_list_hierarchy (שלב 4) -->
+  <h2>Nested Lists:</h2>
+  <!-- 14.1 <ul> inside <ul> directly (not inside <li>) -->
+  <ul>
+    <ul>
+      <li>SubItem1</li>
+    </ul>
+  </ul>
+
+  <!-- 14.2 <li> outside a <ul> or <ol> -->
+  <li>Orphan List Item</li>
+
+  <!-- 15. dynamic_content_updates (שלב 4) -->
+  <h2>Dynamic Content Updates:</h2>
+  <!-- 15.1 dynamic-content w/o aria-live or live ancestor -->
+  <div data-dynamic-content="true">
+    <p>Some dynamic text</p>
+  </div>
+
+  <!-- 15.2 role="alert" without explicit aria-live -->
+  <div role="alert">Immediate alert but no aria-live</div>
+
+  <!-- 16. hover_content_accessibility (שלב 4) -->
+  <h2>Hover Content:</h2>
+  <!-- 16.1 trigger missing data-hover-content -->
+  <button>Hover me (no data-hover-content)</button>
+
+  <!-- 16.2 trigger references non-existent ID -->
+  <button data-hover-content="tooltipX">Hover me (invalid ID)</button>
+  <!-- no #tooltipX in DOM -->
+
+  <!-- 16.3 content exists but missing aria-hidden -->
+  <div id="tooltipY">Tooltip content without aria-hidden</div>
+
+  <!-- 16.4 trigger not focusable (e.g., <span> without tabindex) -->
+  <span data-hover-content="tooltipZ">Hover as span</span>
+  <div id="tooltipZ" aria-hidden="false">Hover content #Z</div>
+</body>
+</html>

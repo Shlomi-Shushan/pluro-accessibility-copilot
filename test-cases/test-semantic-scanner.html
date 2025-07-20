@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Semantic Scanner</title>
+</head>
+
+<body>
+    <h1>Test Semantic Scanner</h1>
+
+    <!-- 1. Text not in paragraph -->
+    This text is not in a paragraph tag.
+
+    <!-- 2. Quote not in blockquote -->
+    <q>This quote should be in blockquote</q>
+    <cite>This citation should be in blockquote</cite>
+
+    <!-- 3. Non-semantic emphasis -->
+    <b>This should use strong</b>
+    <i>This should use em</i>
+
+    <!-- 4. Navigation not in nav -->
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+
+    <!-- 5. Text outside landmarks -->
+    <header>
+        <h2>Header</h2>
+    </header>
+    This text is outside landmarks.
+    <main>
+        <h2>Main Content</h2>
+    </main>
+
+    <!-- 6. Nested list not in li -->
+    <ul>
+        <li>Item 1</li>
+        <ul>
+            <li>Nested item</li>
+        </ul>
+    </ul>
+
+    <!-- 7. Required field missing attribute -->
+    <label for="name">Name *</label>
+    <input type="text" id="name">
+
+    <!-- 8. Error summary missing links -->
+    <div role="alert">
+        <p>Please fix the following errors:</p>
+        <p>Name is required</p>
+    </div>
+
+    <!-- 9. Slider missing aria values -->
+    <div role="slider" aria-label="Volume"></div>
+
+    <!-- 10. Focusable but aria-hidden -->
+    <button aria-hidden="true">Hidden Button but focusable</button>
+
+    <!-- 11. role="alert" without explicit aria-live -->
+    <div role="alert">Immediate alert but no aria-live</div>
+
+    <!-- 12. Hover content accessibility -->
+    <h2>Hover Content:</h2>
+    <button>Hover me (no data-hover-content)</button>
+    <div id="tooltip">This is a tooltip</div>
+
+    <!-- 13. Table header missing scope -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <!-- 14. Table cell headers missing th -->
+    <table>
+        <tr>
+            <th id="name-header">Name</th>
+            <th id="age-header">Age</th>
+        </tr>
+        <tr>
+            <td headers="non-existent-id">John</td>
+            <td headers="age-header">25</td>
+        </tr>
+    </table>
+
+    <!-- 15. Error message missing role/aria-live -->
+    <div class="error-message">This is an error message</div>
+
+    <!-- 16. Form validation aria-live -->
+    <form>
+        <input type="text" required>
+        <div class="error">This field is required</div>
+    </form>
+
+    <!-- 17. Proper semantic structure -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <p>This is proper content in a paragraph.</p>
+        <blockquote>This is a proper quote in blockquote.</blockquote>
+        <p>This uses <strong>strong</strong> and <em>emphasis</em> correctly.</p>
+    </main>
+
+    <!-- 18. Proper nested list -->
+    <ul>
+        <li>Item 1
+            <ul>
+                <li>Nested item 1</li>
+                <li>Nested item 2</li>
+            </ul>
+        </li>
+        <li>Item 2</li>
+    </ul>
+
+    <!-- 19. Proper required field -->
+    <label for="email">Email *</label>
+    <input type="email" id="email" required aria-required="true">
+
+    <!-- 20. Proper error summary -->
+    <div role="alert">
+        <p>Please fix the following errors:</p>
+        <ul>
+            <li><a href="#name">Name is required</a></li>
+            <li><a href="#email">Email is invalid</a></li>
+        </ul>
+    </div>
+
+    <!-- 21. Proper slider -->
+    <div role="slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="Volume"></div>
+
+    <!-- 22. Proper role="alert" with aria-live -->
+    <div role="alert" aria-live="assertive">This alert has proper aria-live</div>
+
+    <!-- 23. Proper hover content -->
+    <button data-hover-content="tooltip">Hover me (with data-hover-content)</button>
+    <div id="tooltip" aria-hidden="true">This tooltip is properly hidden</div>
+
+    <!-- 24. Proper table structure -->
+    <table>
+        <caption>User Information</caption>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <!-- 25. Proper error message -->
+    <div class="error-message" role="alert" aria-live="assertive">This error message is properly configured</div>
+</body>
+
+</html>

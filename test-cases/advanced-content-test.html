@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת כללי תוכן מתקדמים - Advanced Content Rules Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .good-example {
+            border-color: #4CAF50;
+            background-color: #f1f8e9;
+        }
+        .bad-example {
+            border-color: #f44336;
+            background-color: #ffebee;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip-content {
+            visibility: hidden;
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .tooltip:hover .tooltip-content {
+            visibility: visible;
+        }
+        .dynamic-content {
+            min-height: 50px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>בדיקת כללי תוכן מתקדמים</h1>
+    <p>קובץ זה בודק את 4 הכללים החדשים לתוכן מתקדם</p>
+
+    <!-- 13. Complex Table Structure Tests -->
+    <div class="test-section bad-example">
+        <h2>❌ טבלה רעה - ללא כותרות</h2>
+        <table>
+            <tr>
+                <td>שם</td>
+                <td>גיל</td>
+                <td>עיר</td>
+            </tr>
+            <tr>
+                <td>יוסי</td>
+                <td>25</td>
+                <td>תל אביב</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ טבלה מורכבת ללא scope</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>שם</th>
+                    <th>ינואר</th>
+                    <th>פברואר</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>מכירות</th>
+                    <td>1000</td>
+                    <td>1200</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ טבלה מקוננת ללא caption</h2>
+        <table>
+            <caption>נתוני חברה</caption>
+            <tr>
+                <th scope="col">מחלקה</th>
+                <th scope="col">פרטים</th>
+            </tr>
+            <tr>
+                <td>מכירות</td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Q1</td>
+                            <td>1000</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="test-section good-example">
+        <h2>✅ טבלה טובה עם כותרות נכונות</h2>
+        <table>
+            <caption>רשימת עובדים</caption>
+            <thead>
+                <tr>
+                    <th scope="col">שם</th>
+                    <th scope="col">גיל</th>
+                    <th scope="col">עיר</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">יוסי כהן</th>
+                    <td>25</td>
+                    <td>תל אביב</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 14. Nested List Hierarchy Tests -->
+    <div class="test-section bad-example">
+        <h2>❌ רשימה מקוננת לא נכונה</h2>
+        <ul>
+            <li>פריט 1</li>
+            <ul>
+                <li>תת-פריט 1</li>
+                <li>תת-פריט 2</li>
+            </ul>
+            <li>פריט 2</li>
+        </ul>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ פריט רשימה ללא הורה</h2>
+        <div>
+            <li>פריט יתום</li>
+        </div>
+    </div>
+
+    <div class="test-section good-example">
+        <h2>✅ רשימה מקוננת נכונה</h2>
+        <ul>
+            <li>פריט 1
+                <ul>
+                    <li>תת-פריט 1</li>
+                    <li>תת-פריט 2</li>
+                </ul>
+            </li>
+            <li>פריט 2</li>
+        </ul>
+    </div>
+
+    <!-- 15. Dynamic Content Updates Tests -->
+    <div class="test-section bad-example">
+        <h2>❌ תוכן דינמי ללא aria-live</h2>
+        <div class="dynamic-content" data-dynamic-content="true">
+            תוכן זה מתעדכן דינמית אבל לא מוכרז
+        </div>
+        <button onclick="updateBadContent()">עדכן תוכן רע</button>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ התראה ללא aria-live</h2>
+        <div role="alert" id="bad-alert">
+            התראה ללא aria-live מפורש
+        </div>
+    </div>
+
+    <div class="test-section good-example">
+        <h2>✅ תוכן דינמי עם aria-live</h2>
+        <div class="dynamic-content" data-dynamic-content="true" aria-live="polite">
+            תוכן זה מתעדכן דינמית ומוכרז נכון
+        </div>
+        <button onclick="updateGoodContent()">עדכן תוכן טוב</button>
+    </div>
+
+    <div class="test-section good-example">
+        <h2>✅ התראה עם aria-live</h2>
+        <div role="alert" aria-live="assertive" id="good-alert">
+            התראה עם aria-live מפורש
+        </div>
+    </div>
+
+    <!-- 16. Hover Content Accessibility Tests -->
+    <div class="test-section bad-example">
+        <h2>❌ תוכן הובר לא נגיש</h2>
+        <span class="tooltip">
+            העבר עכבר כאן
+            <span class="tooltip-content">טקסט שמופיע בהובר בלבד</span>
+        </span>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ מפעיל הובר ללא data-hover-content</h2>
+        <div>העבר עכבר כאן לתוכן נסתר</div>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ מפעיל הובר עם ID שגוי</h2>
+        <button data-hover-content="nonexistent-tooltip">הובר עם ID שגוי</button>
+    </div>
+
+    <div class="test-section bad-example">
+        <h2>❌ תוכן הובר ללא aria-hidden</h2>
+        <button data-hover-content="tooltip-no-hidden">הובר ללא aria-hidden</button>
+        <div id="tooltip-no-hidden">תוכן ללא aria-hidden</div>
+    </div>
+
+    <div class="test-section good-example">
+        <h2>✅ תוכן הובר נגיש</h2>
+        <button data-hover-content="good-tooltip" 
+                onmouseenter="showTooltip('good-tooltip')"
+                onmouseleave="hideTooltip('good-tooltip')"
+                onfocus="showTooltip('good-tooltip')"
+                onblur="hideTooltip('good-tooltip')">
+            הובר או מיקוד נגיש
+        </button>
+        <div id="good-tooltip" aria-hidden="true" role="tooltip">
+            תוכן נגיש שמופיע בהובר ובמיקוד
+        </div>
+    </div>
+
+    <script>
+        function updateBadContent() {
+            const element = document.querySelector('.bad-example .dynamic-content');
+            element.textContent = 'תוכן עודכן ב-' + new Date().toLocaleTimeString();
+        }
+
+        function updateGoodContent() {
+            const element = document.querySelector('.good-example .dynamic-content');
+            element.textContent = 'תוכן עודכן ב-' + new Date().toLocaleTimeString();
+        }
+
+        function showTooltip(id) {
+            const tooltip = document.getElementById(id);
+            tooltip.setAttribute('aria-hidden', 'false');
+            tooltip.style.visibility = 'visible';
+        }
+
+        function hideTooltip(id) {
+            const tooltip = document.getElementById(id);
+            tooltip.setAttribute('aria-hidden', 'true');
+            tooltip.style.visibility = 'hidden';
+        }
+    </script>
+</body>
+</html>

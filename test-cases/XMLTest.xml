@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- בדיקה דומה ל־HTML אך בפורמט XML תקני -->
+<root>
+  <!-- 1. Keyboard Trap -->
+  <iframe src="somepage.xml" />
+
+  <div tabindex="0" onkeydown="if (event.key=='Tab') { event.preventDefault(); }">
+    <p>Tab trapped</p>
+  </div>
+
+  <!-- 2. Modal Focus Management -->
+  <dialog role="dialog" aria-modal="true" id="modalX">
+    <p>No focusable</p>
+  </dialog>
+
+  <dialog role="dialog" aria-modal="true" id="modalY">
+    <input type="text"/>
+    <button>Close</button>
+  </dialog>
+
+  <!-- 3. Negative TabIndex -->
+  <button tabindex="-1">Bad</button>
+
+  <!-- 4. Focusable but aria-hidden -->
+  <button aria-hidden="true">Hidden</button>
+
+  <!-- 5. form_validation_aria_live -->
+  <form>
+    <input type="text" name="f1"/>
+  </form>
+
+  <!-- 6. autocomplete_accessibility -->
+  <input type="text" autocomplete="bogus" id="autoX"/>
+
+  <!-- 7. dynamic_form_fields -->
+  <input type="tel" data-dynamic-field="true"/>
+
+  <!-- 8. form_error_announcements -->
+  <input type="email" aria-invalid="true"/>
+  <div class="error-message">Error occurred</div>
+
+  <!-- 9. tab_navigation_advanced -->
+  <tabs role="tablist">
+    <tab role="tab" aria-selected="maybe" tabindex="2">OnlyOne</tab>
+  </tabs>
+
+  <!-- 10. dropdown_accessibility -->
+  <menu role="menu">
+    <item>Item</item>
+  </menu>
+
+  <!-- 11. carousel_aria_live -->
+  <carousel>
+    <slide>1</slide>
+  </carousel>
+
+  <!-- 12. expandable_content_management -->
+  <control aria-expanded="true"/>
+  <section id="sec1">Content</section>
+
+  <!-- 13. complex_table_structure -->
+  <table id="t1">
+    <row>
+      <cell>1</cell>
+    </row>
+  </table>
+
+  <table id="t2">
+    <header>
+      <col>H1</col>
+    </header>
+    <row>
+      <cell headers="hX">Val</cell>
+    </row>
+  </table>
+
+  <table id="outer">
+    <row>
+      <cell>
+        <table id="inner">
+          <row>
+            <header>IH</header>
+            <cell>IV</cell>
+          </row>
+        </table>
+      </cell>
+    </row>
+  </table>
+
+  <!-- 14. nested_list_hierarchy -->
+  <ul>
+    <ul>
+      <li>Sub</li>
+    </ul>
+  </ul>
+  <li>Orphan</li>
+
+  <!-- 15. dynamic_content_updates -->
+  <div data-dynamic-content="true">Dynamic</div>
+  <div role="alert">Alert</div>
+
+  <!-- 16. hover_content_accessibility -->
+  <button>HoverNoData</button>
+  <button data-hover-content="tX">HoverInvalid</button>
+  <div id="tY">Tooltip</div>
+  <span data-hover-content="tZ">HoverSpan</span>
+  <div id="tZ" aria-hidden="false">TooltipZ</div>
+</root>

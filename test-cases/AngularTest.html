@@ -1,0 +1,131 @@
+<!-- Angular Template Test Fixture – כל הבעיות יחד -->
+<iframe src="page.html"></iframe>
+<div tabindex="0" (keydown)="ifTabTrap($event)">
+  Trap Tab (Angular)
+</div>
+
+<!-- Modal Focus Management -->
+<div role="dialog" aria-modal="true" id="ngModal1">
+  <p>No focusables (Angular)</p>
+</div>
+<div role="dialog" aria-modal="true" id="ngModal2">
+  <input type="text" / aria-label="Input description">
+  <button>Close</button>
+</div>
+<div role="dialog" aria-modal="true" id="ngModal3">
+  <label for="input-1752412352867">Input Label:</label>
+  <input type="text" / id="input-1752412352867">
+  <a href="#">LinkOnly</a>
+</div>
+
+<!-- Negative tabindex -->
+<button tabindex="-1">NegTab Angular</button>
+<a href="#" tabindex="-1">LinkNeg Angular</a>
+
+<!-- Focusable but aria-hidden -->
+<button aria-hidden="true">HiddenBtn Angular</button>
+
+<hr />
+
+<!-- form_validation_aria_live -->
+<form id="ngForm">
+  <label for="ngName">Name:</label>
+  <input type="text" id="ngName" />
+</form>
+
+<!-- autocomplete_accessibility -->
+<input type="text" id="ngAuto" autocomplete="bogus" />
+
+<!-- dynamic_form_fields -->
+<input type="tel" id="ngDyn" data-dynamic-field />
+
+<!-- form_error_announcements -->
+<input type="email" id="ngEmail" aria-invalid="true" / aria-label="Input description">
+<div class="error-message">Invalid Email (Angular)</div>
+
+<hr />
+
+<!-- tab_navigation_advanced -->
+<div role="tablist">
+  <button role="tab" aria-selected="maybe" tabindex="2">OnlyOne</button>
+</div>
+<div role="tablist">
+  <button role="tab" aria-selected="true" tabindex="1">TabA</button>
+  <button role="tab" aria-selected="false" tabindex="0">TabB</button>
+</div>
+
+<!-- dropdown_accessibility -->
+<ul role="menu">
+  <li>Item1</li>
+  <li>Item2</li>
+</ul>
+<ul role="menubar">
+  <li>OptA</li>
+  <li>OptB</li>
+</ul>
+
+<!-- carousel_aria_live -->
+<div class="carouselAng">
+  <div class="slide">S1</div>
+  <div class="slide">S2</div>
+</div>
+
+<!-- expandable_content_management -->
+<button aria-expanded="true">ToggleA</button>
+<button aria-expanded="false" aria-controls="ngNoExist">ToggleB</button>
+<div id="ngSection">No aria-hidden</div>
+
+<hr />
+
+<!-- complex_table_structure -->
+<table id="ngTable1">
+  <tr>
+    <td>Val1</td>
+    <td>Val2</td>
+  </tr>
+</table>
+<table id="ngTable2">
+  <thead>
+    <tr>
+      <th id="nh1">H1</th>
+      <th>H2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td headers="wrong">V1</td>
+      <td>V2</td>
+    </tr>
+  </tbody>
+</table>
+<table id="ngOuter">
+  <tr>
+    <td>
+      <table id="ngInner">
+        <tr>
+          <th>IH</th>
+          <td>IV</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- nested_list_hierarchy -->
+<ul>
+  <ul>
+    <li>SubAngular</li>
+  </ul>
+</ul>
+<li>OrphanAngular</li>
+
+<!-- dynamic_content_updates -->
+<div data-dynamic-content="true">DynamicAngular</div>
+<div role="alert">AlertAngular</div>
+
+<!-- hover_content_accessibility -->
+<button>HoverNoDataAngular</button>
+<button data-hover-content="ahxNg">HoverInvalidAngular</button>
+<div id="ahNgY">TooltipAngular</div>
+<span data-hover-content="ahNgZ">HoverSpanAngular</span>
+<div id="ahNgZ" aria-hidden="false">TooltipZAngular</div>

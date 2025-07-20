@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test New Scanners</title>
+</head>
+
+<body>
+    <h1>Test New Scanners</h1>
+
+    <!-- 5. form_validation_aria_live (שלב 2) -->
+    <h2>Form Validation without aria-live:</h2>
+    <form id="form1">
+        <label for="name1">Name:</label>
+        <input type="text" id="name1" required />
+        <button type="submit">Submit</button>
+        <div class="error">This field is required</div>
+    </form>
+
+    <!-- 15.2 role="alert" without explicit aria-live -->
+    <div role="alert">Immediate alert but no aria-live</div>
+
+    <!-- 16. hover_content_accessibility (שלב 4) -->
+    <h2>Hover Content:</h2>
+    <!-- 16.1 trigger missing data-hover-content -->
+    <button>Hover me (no data-hover-content)</button>
+
+    <!-- 16.2 button with data-hover-content -->
+    <button data-hover-content="tooltipX">Hover me (with data-hover-content)</button>
+
+    <!-- 16.3 content exists but missing aria-hidden -->
+    <div id="tooltipY">Tooltip content without aria-hidden</div>
+
+    <!-- Additional test cases for new scanners -->
+    <h2>Structure and Content Tests:</h2>
+
+    <!-- Table missing headers -->
+    <table>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+        </tr>
+    </table>
+
+    <!-- Nested list not in li -->
+    <ul>
+        <li>Item 1</li>
+        <ul>
+            <li>Nested item</li>
+        </ul>
+    </ul>
+
+    <!-- Missing h1 -->
+    <h2>Subheading without h1</h2>
+
+    <!-- Missing landmarks -->
+    <div>Content without landmarks</div>
+
+    <!-- Dynamic content without aria-live -->
+    <div data-dynamic-content>Dynamic content</div>
+
+    <!-- Icon without alt -->
+    <img src="icon.png" />
+
+    <h2>Form and Validation Tests:</h2>
+
+    <!-- Input without label -->
+    <input type="text" />
+
+    <!-- Required field without aria-required -->
+    <input type="email" required />
+
+    <!-- Fieldset without legend -->
+    <fieldset>
+        <input type="radio" name="option" />
+        <input type="radio" name="option" />
+    </fieldset>
+
+    <!-- Input without autocomplete -->
+    <input type="text" />
+
+    <!-- Required input without validation message -->
+    <input type="text" required />
+
+    <h2>Keyboard and Focus Tests:</h2>
+
+    <!-- Focusable with tabindex="-1" -->
+    <button tabindex="-1">Button with negative tabindex</button>
+
+    <!-- Focusable without tabindex -->
+    <a href="#">Link without tabindex</a>
+
+    <!-- Modal without tabindex -->
+    <div role="dialog">Modal without tabindex</div>
+
+    <!-- Tabindex > 0 -->
+    <button tabindex="5">Button with tabindex > 0</button>
+
+    <!-- CSS outline: none -->
+    <style>
+        button {
+            outline: none;
+        }
+    </style>
+
+    <h2>Global and Meta Tests:</h2>
+
+    <!-- Missing lang attribute -->
+    <html>
+
+    <head>
+        <title>Page Title</title>
+    </head>
+
+    <body>
+        Content
+    </body>
+
+    </html>
+
+    <!-- Missing meta description -->
+
+    <head>
+        <title>Page Title</title>
+    </head>
+
+    <!-- Missing viewport -->
+
+    <head>
+        <title>Page Title</title>
+        <meta charset="utf-8">
+    </head>
+
+    <!-- Missing charset -->
+
+    <head>
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <!-- iframe without title -->
+    <iframe src="https://example.com"></iframe>
+
+    <!-- SVG without aria-label -->
+    <svg width="100" height="100">
+        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+    </svg>
+
+    <!-- Video without captions -->
+    <video controls>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Meta refresh -->
+    <meta http-equiv="refresh" content="5;url=https://example.com">
+
+    <!-- Duplicate ID -->
+    <div id="duplicate">First element</div>
+    <div id="duplicate">Second element</div>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Accessibility Test File</title>
+</head>
+<body>
+    <!-- Missing alt attributes -->
+    <img src="image1.jpg">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+    <img src="image4.jpg">
+    <img src="image5.jpg">
+    
+    <!-- Missing labels -->
+    <form>
+        <input type="text" placeholder="Name">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <input type="tel" placeholder="Phone">
+        <input type="date" placeholder="Birth Date">
+        <select>
+            <option>Choose option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </select>
+        <textarea placeholder="Comments"></textarea>
+    </form>
+    
+    <!-- Missing headings hierarchy -->
+    <h1>Main Title</h1>
+    <h3>Skipped H2</h3>
+    <h5>Skipped H4</h5>
+    
+    <!-- Poor color contrast -->
+    <div style="color: #ccc; background: white;">Low contrast text</div>
+    <div style="color: #ddd; background: #eee;">Very low contrast</div>
+    
+    <!-- Missing ARIA labels -->
+    <button></button>
+    <button></button>
+    <button></button>
+    
+    <!-- Interactive elements without keyboard support -->
+    <div onclick="doSomething()">Clickable div</div>
+    <span onclick="doSomething()">Clickable span</span>
+    
+    <!-- Missing table headers -->
+    <table>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+        </tr>
+        <tr>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+    </table>
+    
+    <!-- Duplicate IDs -->
+    <div id="duplicate">Content 1</div>
+    <div id="duplicate">Content 2</div>
+    <div id="duplicate">Content 3</div>
+    
+    <!-- Missing landmarks -->
+    <div>
+        <div>Navigation content</div>
+        <div>Main content</div>
+        <div>Footer content</div>
+    </div>
+    
+    <!-- More complex form issues -->
+    <form>
+        <fieldset>
+            <input type="radio" name="gender" value="male">
+            <input type="radio" name="gender" value="female">
+            <input type="radio" name="gender" value="other">
+        </fieldset>
+        
+        <input type="checkbox" value="terms">
+        <input type="checkbox" value="newsletter">
+        <input type="checkbox" value="updates">
+    </form>
+    
+    <!-- ARIA issues -->
+    <div role="button" aria-pressed="true"></div>
+    <div role="tab" aria-selected="false"></div>
+    <div role="tabpanel" aria-labelledby="nonexistent"></div>
+    
+    <!-- More images without alt -->
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+    <img src="photo7.jpg">
+    <img src="photo8.jpg">
+    <img src="photo9.jpg">
+    <img src="photo10.jpg">
+    
+    <!-- Complex interactive widgets -->
+    <div class="carousel">
+        <div class="slide">Slide 1</div>
+        <div class="slide">Slide 2</div>
+        <div class="slide">Slide 3</div>
+        <button class="prev">Previous</button>
+        <button class="next">Next</button>
+    </div>
+    
+    <!-- Modal without proper ARIA -->
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Modal content</p>
+        </div>
+    </div>
+    
+    <!-- Dropdown without ARIA -->
+    <div class="dropdown">
+        <button class="dropdown-toggle">Options</button>
+        <div class="dropdown-menu">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+        </div>
+    </div>
+    
+    <!-- More accessibility issues -->
+    <video src="video.mp4"></video>
+    <audio src="audio.mp3"></audio>
+    
+    <iframe src="https://example.com"></iframe>
+    
+    <canvas width="200" height="100"></canvas>
+    
+    <!-- Links without descriptive text -->
+    <a href="#">Click here</a>
+    <a href="#">Read more</a>
+    <a href="#">Learn more</a>
+    
+    <!-- Empty elements -->
+    <p></p>
+    <div></div>
+    <span></span>
+    
+    <script>
+        function doSomething() {
+            console.log('Action performed');
+        }
+    </script>
+</body>
+</html>

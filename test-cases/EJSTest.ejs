@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EJS Test – כל הבעיות</title>
+</head>
+<body>
+  <%-- 1. Keyboard Trap --%>
+  <iframe src="page.html"></iframe>
+  <div tabindex="0" onkeydown="if(event.key=='Tab'){event.preventDefault();}">
+    Trap Tab (EJS)
+  </div>
+
+  <%-- 2. Modal Focus Management --%>
+  <div role="dialog" aria-modal="true" id="ejsModal1">
+    <p>No focusables (EJS)</p>
+  </div>
+  <div role="dialog" aria-modal="true" id="ejsModal2">
+    <input type="text" />
+    <button>Close</button>
+  </div>
+  <div role="dialog" aria-modal="true" id="ejsModal3">
+    <input type="text" />
+    <a href="#">LinkOnly</a>
+  </div>
+
+  <%-- 3. Negative tabindex --%>
+  <button tabindex="-1">NegTab EJS</button>
+  <a href="#" tabindex="-1">LinkNeg EJS</a>
+
+  <%-- 4. Focusable but aria-hidden --%>
+  <button aria-hidden="true">HiddenBtn EJS</button>
+
+  <hr />
+
+  <%-- 5. form_validation_aria_live --%>  
+  <form id="ejsForm">
+    <label for="ejsName">Name:</label>
+    <input type="text" id="ejsName" />
+  </form>
+
+  <%-- 6. autocomplete_accessibility --%>
+  <input type="text" id="ejsAuto" autocomplete="bogus" />
+
+  <%-- 7. dynamic_form_fields --%>
+  <input type="tel" id="ejsDyn" data-dynamic-field />
+
+  <%-- 8. form_error_announcements --%>
+  <input type="email" id="ejsEmail" aria-invalid="true" />
+  <div class="error-message">Invalid Email (EJS)</div>
+
+  <hr />
+
+  <%-- 9. tab_navigation_advanced --%>
+  <div role="tablist">
+    <button role="tab" aria-selected="maybe" tabindex="2">OnlyOne</button>
+  </div>
+  <div role="tablist">
+    <button role="tab" aria-selected="true" tabindex="1">TabA</button>
+    <button role="tab" aria-selected="false" tabindex="0">TabB</button>
+  </div>
+
+  <%-- 10. dropdown_accessibility --%>
+  <ul role="menu">
+    <li>Item1</li>
+    <li>Item2</li>
+  </ul>
+  <ul role="menubar">
+    <li>OptA</li>
+    <li>OptB</li>
+  </ul>
+
+  <%-- 11. carousel_aria_live --%>
+  <div class="carouselEJS">
+    <div class="slide">S1</div>
+    <div class="slide">S2</div>
+  </div>
+
+  <%-- 12. expandable_content_management --%>
+  <button aria-expanded="true">ToggleA</button>
+  <button aria-expanded="false" aria-controls="ejsNoExist">ToggleB</button>
+  <div id="ejsSection">No aria-hidden</div>
+
+  <hr />
+
+  <%-- 13. complex_table_structure --%>
+  <table id="eTable1">
+    <tr>
+      <td>Val1</td>
+      <td>Val2</td>
+    </tr>
+  </table>
+  <table id="eTable2">
+    <thead>
+      <tr>
+        <th id="eh1">H1</th>
+        <th>H2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td headers="wrong">V1</td>
+        <td>V2</td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="eOuter">
+    <tr>
+      <td>
+        <table id="eInner">
+          <tr>
+            <th>IH</th>
+            <td>IV</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <%-- 14. nested_list_hierarchy --%>
+  <ul>
+    <ul>
+      <li>SubEJS</li>
+    </ul>
+  </ul>
+  <li>OrphanEJS</li>
+
+  <%-- 15. dynamic_content_updates --%>
+  <div data-dynamic-content="true">DynamicEJS</div>
+  <div role="alert">AlertEJS</div>
+
+  <%-- 16. hover_content_accessibility --%>
+  <button>HoverNoDataEJS</button>
+  <button data-hover-content="ehx">HoverInvalidEJS</button>
+  <div id="ehY">TooltipEJS</div>
+  <span data-hover-content="ehZ">HoverSpanEJS</span>
+  <div id="ehZ" aria-hidden="false">TooltipZEJS</div>
+</body>
+</html>
