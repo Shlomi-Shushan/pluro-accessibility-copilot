@@ -118,7 +118,7 @@ The failure of Licensor to enforce any provision of this Agreement shall not con
 For questions about this EULA or licensing, please contact:
 
 **Pluro Technologies**  
-Email: legal@pluro.ai  
+Email: support@pluro.ai  
 Website: https://pluro.ai  
 Support: support@pluro.ai
 
